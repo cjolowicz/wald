@@ -1,23 +1,31 @@
+# pylint: disable=no-init,too-few-public-methods
+'''Backends for documents.'''
+
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-_Base = declarative_base()
+__base_class__ = declarative_base()
 
-class Node(_Base):
+
+class Node(__base_class__):
+    '''A node in the document.'''
     __tablename__ = 'nodes'
 
-    id = Column(Integer, primary_key=True)
+    node_id = Column(Integer, primary_key=True)
     name = Column(String)
     content = Column(String)
 
+
 class Backend(object):
+    '''The backend for a document.'''
     def __init__(self, url=None):
         self._url = url or 'sqlite:///:memory:'
         self._engine = create_engine(self._url, echo=True)
-        _Base.metadata.create_all(self._engine)
+        __base_class__.metadata.create_all(self._engine)
 
     def create_session(self):
-        Session = sessionmaker()
-        Session.configure(bind=self._engine)
-        return Session()
+        '''Create a session for managing nodes.'''
+        session_class = sessionmaker()
+        session_class.configure(bind=self._engine)
+        return session_class()
