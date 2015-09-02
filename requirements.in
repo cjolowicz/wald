@@ -1,2 +1,4 @@
 sqlalchemy
 setuptools
+pytest
+tox
