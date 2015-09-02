@@ -35,6 +35,7 @@ class Document(object):
         __base_class__.metadata.create_all(self._engine)
         self._session = session_class()
 
+    @property
     def roots(self):
         '''Return the root nodes of the document.'''
         return self._session.query(Node).filter(

@@ -37,3 +37,11 @@ def test_create_children():
     assert child.node_id == 2
     assert root.parent_id is None
     assert child.parent_id == root.node_id
+
+
+def test_get_document_roots():
+    '''Test retrieving a document's root nodes.'''
+    document = Document()
+    document.add(Node('root'))
+    node, = document.roots
+    assert node.name == 'root'
