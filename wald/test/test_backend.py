@@ -1,3 +1,4 @@
+# pylint: disable=no-member
 '''Tests for wald.backend.'''
 
 from wald.backend import Node, Document
@@ -27,11 +28,11 @@ def test_create_children():
     document = Document()
     root = Node('root')
     child = Node('child', parent=root)
-    assert root.parent is None
-    assert child.parent is root
     document.add(root)
     document.add(child)
     document.save()
+    assert root.parent is None
+    assert child.parent is root
     assert root.node_id == 1
     assert child.node_id == 2
     assert root.parent_id is None

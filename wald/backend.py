@@ -22,11 +22,8 @@ class Node(__base_class__):
         cascade='all',
         backref=backref('parent', remote_side='Node.node_id'))
 
-    def __init__(self, name, content='', parent=None):
-        self.name = name
-        self.content = content
-        self.parent = parent
-        self.parent_id = parent.node_id if parent else None
+    def __init__(self, name, *args, **kwargs):
+        super(Node, self).__init__(*args, name=name, **kwargs)
 
 
 class Document(object):
