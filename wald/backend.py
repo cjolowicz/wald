@@ -1,9 +1,9 @@
-# pylint: disable=no-init,too-few-public-methods
+# pylint: disable=too-few-public-methods
 '''Backends for documents.'''
 
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship, backref
 
 __base_class__ = declarative_base()
 
@@ -13,8 +13,20 @@ class Node(__base_class__):
     __tablename__ = 'nodes'
 
     node_id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey('nodes.node_id'))
     name = Column(String)
     content = Column(String)
+
+    children = relationship(
+        'Node',
+        cascade='all',
+        backref=backref('parent', remote_side='Node.node_id'))
+
+    def __init__(self, name, content='', parent=None):
+        self.name = name
+        self.content = content
+        self.parent = parent
+        self.parent_id = parent.node_id if parent else None
 
 
 class Backend(object):
