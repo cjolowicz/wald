@@ -28,9 +28,9 @@ class Node(__base_class__):
 
 class Document(object):
     '''A hierarchically structured document.'''
-    def __init__(self, url=None):
-        self._url = url or 'sqlite:///:memory:'
-        self._engine = create_engine(self._url, echo=True)
+    def __init__(self, filename=None):
+        self._filename = filename or ':memory:'
+        self._engine = create_engine('sqlite:///%s' % self._filename, echo=True)
         session_class = sessionmaker(bind=self._engine)
         __base_class__.metadata.create_all(self._engine)
         self._session = session_class()
