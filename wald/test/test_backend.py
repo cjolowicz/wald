@@ -1,23 +1,14 @@
-# pylint: disable=redefined-outer-name
 '''Tests for wald.backend.'''
 
-import pytest
-from wald.backend import Node
+from wald.backend import Node, Document
 
 
-@pytest.fixture
-def session():
-    '''Fixture returning a session.'''
-    from wald.backend import Backend
-    backend = Backend()
-    return backend.create_session()
-
-
-def test_add_node_to_session(session):
-    '''Test adding node to session.'''
+def test_add_node_to_session():
+    '''Test adding node to document.'''
+    document = Document()
     node = Node('foobar')
-    session.add(node)
-    session.commit()
+    document.add(node)
+    document.save()
     assert node.node_id == 1
     assert node.parent_id is None
 
@@ -31,15 +22,16 @@ def test_create_node():
     assert node.parent is None
 
 
-def test_create_children(session):
+def test_create_children():
     '''Test creating children.'''
+    document = Document()
     root = Node('root')
     child = Node('child', parent=root)
     assert root.parent is None
     assert child.parent is root
-    session.add(root)
-    session.add(child)
-    session.commit()
+    document.add(root)
+    document.add(child)
+    document.save()
     assert root.node_id == 1
     assert child.node_id == 2
     assert root.parent_id is None

@@ -29,14 +29,24 @@ class Node(__base_class__):
         self.parent_id = parent.node_id if parent else None
 
 
-class Backend(object):
-    '''The backend for a document.'''
+class Document(object):
+    '''A hierarchically structured document.'''
     def __init__(self, url=None):
         self._url = url or 'sqlite:///:memory:'
         self._engine = create_engine(self._url, echo=True)
-        self._session_class = sessionmaker(bind=self._engine)
+        session_class = sessionmaker(bind=self._engine)
         __base_class__.metadata.create_all(self._engine)
+        self._session = session_class()
 
-    def create_session(self):
-        '''Create a session for managing nodes.'''
-        return self._session_class()
+    def roots(self):
+        '''Return the root nodes of the document.'''
+        return self._session.query(Node).filter(
+            Node.parent_id.is_(None))
+
+    def add(self, node):
+        '''Add the node to the document.'''
+        self._session.add(node)
+
+    def save(self):
+        '''Save the document.'''
+        self._session.commit()
