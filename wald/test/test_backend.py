@@ -39,6 +39,15 @@ def test_remove_child_node():
     assert child not in root.children
 
 
+def test_remove_parent_link():
+    '''Remove a child node.'''
+    root = Node('root')
+    child = Node('child', parent=root)
+    child.parent = None
+    assert child.parent is None
+    assert child not in root.children
+
+
 def test_add_node_to_document():
     '''Add a node to the document.'''
     document = Document()
@@ -54,6 +63,26 @@ def test_remove_node_from_document():
     node, = document.roots
     document.remove(node)
     assert node not in document.roots
+
+
+def test_remove_subtree_from_document():
+    '''Remove a subtree from the document.'''
+    document = Document()
+    root = Node('root')
+    node = Node('node')
+    root.children.append(node)
+
+    document.add(root)
+    document.save()
+
+    assert root in document.roots
+    assert node in root.children
+
+    document.remove(root)
+    document.save()
+
+    assert root not in document.roots
+    assert node in root.children
 
 
 def test_save_document_with_root_node():
@@ -79,3 +108,27 @@ def test_save_document_with_child_node():
     assert child.node_id == 2
     assert root.parent_id is None
     assert child.parent_id == root.node_id
+
+
+def test_add_and_remove_child_node():
+    '''Add and remove a child node.'''
+    document = Document()
+    root = Node('root')
+    node = Node('node')
+
+    document.add(root)
+    document.add(node)
+    assert node in document.roots
+    assert node not in root.children
+
+    root.children.append(node)
+    assert node not in document.roots
+    assert node in root.children
+
+    del root.children[0]
+    assert node in document.roots
+    assert node not in root.children
+
+    document.remove(node)
+    assert node not in document.roots
+    assert node not in root.children
