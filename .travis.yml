@@ -4,6 +4,6 @@ install:
 script:
   - tox
 env:
-  - TOXENV=wald-py3.4
-  - TOXENV=wald-py3.3
-  - TOXENV=wald-py2.7
+  - TOXENV=py34
+  - TOXENV=py33
+  - TOXENV=py27
