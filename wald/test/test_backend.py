@@ -40,8 +40,17 @@ def test_create_children():
 
 
 def test_get_document_roots():
-    '''Test retrieving a document's root nodes.'''
+    '''Test retrieving the root nodes.'''
     document = Document()
     document.add(Node('root'))
     node, = document.roots
     assert node.name == 'root'
+
+
+def test_remove_root():
+    '''Test removing a root node.'''
+    document = Document()
+    document.add(Node('root'))
+    node, = document.roots
+    document.remove(node)
+    assert node not in document.roots

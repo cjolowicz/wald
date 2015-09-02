@@ -45,6 +45,10 @@ class Document(object):
         '''Add the node to the document.'''
         self._session.add(node)
 
+    def remove(self, node):
+        '''Remove the node from the document.'''
+        self._session.delete(node)
+
     def save(self):
         '''Save the document.'''
         self._session.commit()
