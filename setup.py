@@ -10,4 +10,5 @@ setup(name='wald',
       url='https://github.org/cjolowicz/wald',
       version='0.1',
       packages=['wald'],
+      install_requires=['sqlalchemy'],
 )
