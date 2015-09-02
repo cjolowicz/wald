@@ -1,4 +1,4 @@
-# pylint: disable=no-member
+# pylint: disable=no-member, invalid-name
 '''Tests for wald.backend.'''
 
 from wald.backend import Node, Document
@@ -13,12 +13,30 @@ def test_create_node():
     assert node.parent is None
 
 
-def test_add_child():
-    '''Add a child node.'''
+def test_create_child_node():
+    '''Create a child node.'''
     root = Node('root')
     child = Node('child', parent=root)
-    assert root.parent is None
     assert child.parent is root
+    assert child in root.children
+
+
+def test_add_child_node():
+    '''Add a child node.'''
+    root = Node('root')
+    node = Node('node')
+    root.children.append(node)
+    assert node.parent is root
+    assert node in root.children
+
+
+def test_remove_child_node():
+    '''Remove a child node.'''
+    root = Node('root')
+    child = Node('child', parent=root)
+    del root.children[0]
+    assert child.parent is None
+    assert child not in root.children
 
 
 def test_add_node_to_document():
@@ -38,7 +56,7 @@ def test_remove_node_from_document():
     assert node not in document.roots
 
 
-def test_save_document_with_root():
+def test_save_document_with_root_node():
     '''Save a document with a root node.'''
     document = Document()
     node = Node('root')
@@ -48,7 +66,7 @@ def test_save_document_with_root():
     assert node.parent_id is None
 
 
-def test_save_document_with_child():
+def test_save_document_with_child_node():
     '''Save a document with a child node.'''
     document = Document()
     root = Node('root')
