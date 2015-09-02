@@ -55,3 +55,6 @@ docs/_build/
 
 # PyBuilder
 target/
+MANIFEST
+README.rst
+README.txt

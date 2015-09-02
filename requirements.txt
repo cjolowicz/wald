@@ -5,3 +5,7 @@
 #    pip-compile requirements.in
 #
 sqlalchemy==1.0.8
+
+# The following packages are commented out because they are
+# considered to be unsafe in a requirements file:
+# setuptools==18.2
