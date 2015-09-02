@@ -34,10 +34,9 @@ class Backend(object):
     def __init__(self, url=None):
         self._url = url or 'sqlite:///:memory:'
         self._engine = create_engine(self._url, echo=True)
+        self._session_class = sessionmaker(bind=self._engine)
         __base_class__.metadata.create_all(self._engine)
 
     def create_session(self):
         '''Create a session for managing nodes.'''
-        session_class = sessionmaker()
-        session_class.configure(bind=self._engine)
-        return session_class()
+        return self._session_class()
