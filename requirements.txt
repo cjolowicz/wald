@@ -4,8 +4,50 @@
 #
 #    pip-compile requirements.in
 #
+altgraph==0.12            # via macholib, modulegraph, py2app
+macholib==1.7             # via py2app
+modulegraph==0.12.1       # via py2app
 pluggy==0.3.0             # via tox
+py2app==0.9               # via pyobjc
 py==1.4.30                # via pytest, tox
+pyobjc-core==3.0.4        # via pyobjc, pyobjc-framework-accounts, pyobjc-framework-addressbook, pyobjc-framework-applescriptkit, pyobjc-framework-applescriptobjc, pyobjc-framework-automator, pyobjc-framework-calendarstore, pyobjc-framework-cfnetwork, pyobjc-framework-cocoa, pyobjc-framework-collaboration, pyobjc-framework-coredata, pyobjc-framework-corelocation, pyobjc-framework-coretext, pyobjc-framework-corewlan, pyobjc-framework-dictionaryservices, pyobjc-framework-diskarbitration, pyobjc-framework-eventkit, pyobjc-framework-exceptionhandling, pyobjc-framework-fsevents, pyobjc-framework-inputmethodkit, pyobjc-framework-installerplugins, pyobjc-framework-instantmessage, pyobjc-framework-latentsemanticmapping, pyobjc-framework-launchservices, pyobjc-framework-preferencepanes, pyobjc-framework-pubsub, pyobjc-framework-qtkit, pyobjc-framework-quartz, pyobjc-framework-screensaver, pyobjc-framework-scriptingbridge, pyobjc-framework-searchkit, pyobjc-framework-servicemanagement, pyobjc-framework-social, pyobjc-framework-storekit, pyobjc-framework-syncservices, pyobjc-framework-systemconfiguration, pyobjc-framework-webkit
+pyobjc-framework-Accounts==3.0.4
+pyobjc-framework-AddressBook==3.0.4
+pyobjc-framework-AppleScriptKit==3.0.4
+pyobjc-framework-AppleScriptObjC==3.0.4
+pyobjc-framework-Automator==3.0.4
+pyobjc-framework-CalendarStore==3.0.4
+pyobjc-framework-CFNetwork==3.0.4
+pyobjc-framework-cocoa==3.0.4  # via pyobjc, pyobjc-framework-accounts, pyobjc-framework-addressbook, pyobjc-framework-applescriptkit, pyobjc-framework-applescriptobjc, pyobjc-framework-automator, pyobjc-framework-calendarstore, pyobjc-framework-cfnetwork, pyobjc-framework-collaboration, pyobjc-framework-coredata, pyobjc-framework-corelocation, pyobjc-framework-coretext, pyobjc-framework-corewlan, pyobjc-framework-dictionaryservices, pyobjc-framework-diskarbitration, pyobjc-framework-eventkit, pyobjc-framework-exceptionhandling, pyobjc-framework-fsevents, pyobjc-framework-inputmethodkit, pyobjc-framework-installerplugins, pyobjc-framework-instantmessage, pyobjc-framework-latentsemanticmapping, pyobjc-framework-launchservices, pyobjc-framework-preferencepanes, pyobjc-framework-pubsub, pyobjc-framework-qtkit, pyobjc-framework-quartz, pyobjc-framework-screensaver, pyobjc-framework-scriptingbridge, pyobjc-framework-searchkit, pyobjc-framework-servicemanagement, pyobjc-framework-social, pyobjc-framework-storekit, pyobjc-framework-syncservices, pyobjc-framework-systemconfiguration, pyobjc-framework-webkit
+pyobjc-framework-Collaboration==3.0.4
+pyobjc-framework-coredata==3.0.4  # via pyobjc, pyobjc-framework-syncservices
+pyobjc-framework-CoreLocation==3.0.4
+pyobjc-framework-CoreText==3.0.4
+pyobjc-framework-CoreWLAN==3.0.4
+pyobjc-framework-DictionaryServices==3.0.4
+pyobjc-framework-DiskArbitration==3.0.4
+pyobjc-framework-EventKit==3.0.4
+pyobjc-framework-ExceptionHandling==3.0.4
+pyobjc-framework-FSEvents==3.0.4
+pyobjc-framework-InputMethodKit==3.0.4
+pyobjc-framework-InstallerPlugins==3.0.4
+pyobjc-framework-InstantMessage==3.0.4
+pyobjc-framework-LatentSemanticMapping==3.0.4
+pyobjc-framework-LaunchServices==3.0.4
+pyobjc-framework-PreferencePanes==3.0.4
+pyobjc-framework-PubSub==3.0.4
+pyobjc-framework-QTKit==3.0.4
+pyobjc-framework-quartz==3.0.4  # via pyobjc, pyobjc-framework-coretext, pyobjc-framework-instantmessage, pyobjc-framework-qtkit
+pyobjc-framework-ScreenSaver==3.0.4
+pyobjc-framework-ScriptingBridge==3.0.4
+pyobjc-framework-SearchKit==3.0.4
+pyobjc-framework-ServiceManagement==3.0.4
+pyobjc-framework-Social==3.0.4
+pyobjc-framework-StoreKit==3.0.4
+pyobjc-framework-SyncServices==3.0.4
+pyobjc-framework-SystemConfiguration==3.0.4
+pyobjc-framework-WebKit==3.0.4
+pyobjc==3.0.4
 pytest==2.7.2
 sqlalchemy==1.0.8
 tox==2.1.1
