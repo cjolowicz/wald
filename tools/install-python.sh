@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tooldir=$(dirname $0)
-srcdir=$(dirname $tooldir)
+srcdir=$(dirname $(dirname $0))
 
-xargs -n1 pyenv install < $srcdir/.python-version
+env PYTHON_CONFIGURE_OPTS="--enable-framework" \
+    xargs -n1 pyenv install < $srcdir/.python-version
