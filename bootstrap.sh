@@ -2,10 +2,15 @@
 
 srcdir=$(dirname $0)
 tooldir=$srcdir/tools
+scripts=(
+    install-system-requirements
+    install-python
+    create-virtualenv
+    install-pip-tools
+    install-requirements
+    generate-readme
+)
 
-$tooldir/install-system-requirements.sh
-$tooldir/install-python.sh
-$tooldir/create-virtualenv.sh
-$tooldir/install-pip-tools.sh
-$tooldir/install-requirements.sh
-$tooldir/generate-readme.sh
+for script in ${scripts[@]}; do
+    $tooldir/$script.sh
+done
