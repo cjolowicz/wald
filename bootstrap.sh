@@ -3,7 +3,9 @@
 srcdir=$(dirname $0)
 tooldir=$srcdir/tools
 scripts=(
-    install-system-requirements
+    install-pyenv
+    install-homebrew
+    install-pandoc
     install-python
     create-virtualenv
     install-pip-tools
