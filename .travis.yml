@@ -8,3 +8,17 @@ script:
 env:
   - TOXENV=py36
   - TOXENV=py27
+addons:
+  apt:
+    packages:
+    - libgl1-mesa-glx
+    - libglu1-mesa
+    - libgl1-mesa-dev
+    - libglu1-mesa-dev
+    - libgstreamer0.10-dev
+    - libgconf2-dev
+    - libsdl1.2-dev
+    - zlib1g-dev
+    - libjpeg62-dev
+    - libtiff4-dev
+    - python-gst0.10-dev
