@@ -1,5 +1,11 @@
 # pylint: disable=too-few-public-methods
-'''Backends for documents.'''
+'''Backends for documents.
+
+TODO:
+
+- custom relationships between nodes, e.g. "example for", "member of", "subset of"
+- child sequence
+'''
 
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
@@ -52,3 +58,20 @@ class Document(object):
     def save(self):
         '''Save the document.'''
         self._session.commit()
+
+    def insert_document(self, document, parent=None):
+        for root in document.roots:
+            self.insert_tree(root, parent=parent)
+
+    def insert_tree(self, node, parent=None):
+        copy = Node(node.name, content=node.content, parent=parent)
+        self.add(copy)
+        for child in node.children:
+            self.insert_tree(child, parent=copy)
+
+    def save_as(self, filename):
+        open(filename, 'w').close() # truncate target
+        document = Document(filename)
+        document.insert_document(self)
+        document.save()
+        return document
